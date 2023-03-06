@@ -6,6 +6,7 @@ import json
 import time
 from datetime import datetime
 import random
+import socket
 
 # ***** Initializes Colorama to format printing
 init(autoreset=True)
@@ -14,12 +15,13 @@ init(autoreset=True)
 # ***** Variables initialization - START *****
 # ********************************************
 producer = None
-caRootLocation='certs/CARoot.pem'
-password='password'
+caRootLocation = 'certs/CARoot.pem'
+password = 'password'
 # Get environment variables
 kafkaBrokers = os.getenv('KAFKA_BROKER')
 SSL = os.getenv('SSL')
 topic = os.getenv('TOPIC')
+host = socket.gethostname()
 # ********************************************
 # ****** Variables initialization - END ******
 # ********************************************
@@ -27,49 +29,58 @@ topic = os.getenv('TOPIC')
 # *****************************
 # ***** Functions - START *****
 # *****************************
+
+
 def simulate_sensor():
     temperature = random.randint(-10, 50)
     humidity = random.randint(0, 100)
-    timestamp = str (datetime.now())[:-7]#slices of everything smaller than seconds
+    # slices of everything smaller than seconds
+    timestamp = str(datetime.now())[:-7]
     return humidity, temperature, timestamp
 # *****************************
 # ****** Functions - END ******
 # *****************************
 
+
 # **********************************
 # ***** Main program execution *****
 # **********************************
 if __name__ == '__main__':
-    ###### Initialize Kafka producer
-    if (kafkaBrokers == None) :
+    # Initialize Kafka producer
+    if (kafkaBrokers == None):
         print(Style.BRIGHT + 'No KAFKA_BROKER environment variable set, exiting ... ')
         sys.exit(1)
     if (SSL == None) | (SSL == "false"):
         print(Style.BRIGHT + 'Connecting to Kafka Broker without SSL')
-        producer = KafkaProducer(bootstrap_servers=kafkaBrokers, value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+        producer = KafkaProducer(bootstrap_servers=kafkaBrokers,
+                                 value_serializer=lambda v: json.dumps(v).encode('utf-8'))
     else:
         print(Style.BRIGHT + 'Connecting to Kafka Broker with SSL')
         producer = KafkaProducer(bootstrap_servers=kafkaBrokers, value_serializer=lambda v: json.dumps(v).encode('utf-8'),
-                                security_protocol='SSL',
-                                ssl_check_hostname=False,
-                                ssl_cafile=caRootLocation,
-                                ssl_password=password)
+                                 security_protocol='SSL',
+                                 ssl_check_hostname=False,
+                                 ssl_cafile=caRootLocation,
+                                 ssl_password=password)
 
     while True:
         try:
             print(Style.BRIGHT + 'Simulate sensor reading')
-            humidity, temperature, timestamp = simulate_sensor();
+            humidity, temperature, timestamp = simulate_sensor()
             time.sleep(5)
 
             if humidity is not None and temperature is not None:
-                print('Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity))
-                ###### Write messages to Kafka topic
-                print(Style.BRIGHT + 'Writing message to topic : ' + Fore.GREEN + topic) #type: ignore
-                producer.send(topic, {'temperature': temperature,'humidity':humidity, 'timestamp:':timestamp})
+                print(
+                    'Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity))
+                # Write messages to Kafka topic
+                print(Style.BRIGHT + 'Writing message to topic : ' +
+                      Fore.GREEN + topic)  # type: ignore
+                producer.send(topic, {
+                              'temperature': temperature, 'humidity': humidity, 'timestamp:': timestamp, 'host:': host})
                 producer.flush()
             else:
-                print(Style.BRIGHT + Fore.RED + 'Failed to get reading. Try again!')
+                print(Style.BRIGHT + Fore.RED +
+                      'Failed to get reading. Try again!')
 
         except RuntimeError:
-                print(Style.BRIGHT + Fore.RED + "RuntimeError, trying again...")
-                continue
+            print(Style.BRIGHT + Fore.RED + "RuntimeError, trying again...")
+            continue
