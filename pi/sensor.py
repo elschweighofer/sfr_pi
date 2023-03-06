@@ -4,6 +4,7 @@ import os
 import sys
 import json
 import time
+from datetime import datetime
 import random
 
 # ***** Initializes Colorama to format printing
@@ -29,7 +30,8 @@ topic = os.getenv('TOPIC')
 def simulate_sensor():
     temperature = random.randint(-10, 50)
     humidity = random.randint(0, 100)
-    return humidity, temperature
+    timestamp = str (datetime.now())[:-7]#slices of everything smaller than seconds
+    return humidity, temperature, timestamp
 # *****************************
 # ****** Functions - END ******
 # *****************************
@@ -41,7 +43,7 @@ if __name__ == '__main__':
     ###### Initialize Kafka producer
     if (kafkaBrokers == None) :
         print(Style.BRIGHT + 'No KAFKA_BROKER environment variable set, exiting ... ')
-        sys.exit(1);
+        sys.exit(1)
     if (SSL == None) | (SSL == "false"):
         print(Style.BRIGHT + 'Connecting to Kafka Broker without SSL')
         producer = KafkaProducer(bootstrap_servers=kafkaBrokers, value_serializer=lambda v: json.dumps(v).encode('utf-8'))
@@ -56,14 +58,14 @@ if __name__ == '__main__':
     while True:
         try:
             print(Style.BRIGHT + 'Simulate sensor reading')
-            humidity, temperature = simulate_sensor();
+            humidity, temperature, timestamp = simulate_sensor();
             time.sleep(5)
 
             if humidity is not None and temperature is not None:
                 print('Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity))
                 ###### Write messages to Kafka topic
                 print(Style.BRIGHT + 'Writing message to topic : ' + Fore.GREEN + topic) #type: ignore
-                producer.send(topic, {'temperature': temperature,'humidity':humidity})
+                producer.send(topic, {'temperature': temperature,'humidity':humidity, 'timestamp:':timestamp})
                 producer.flush()
             else:
                 print(Style.BRIGHT + Fore.RED + 'Failed to get reading. Try again!')
