@@ -52,8 +52,18 @@ if __name__ == '__main__':
         sys.exit(1)
     if (SSL == None) | (SSL == "false"):
         print(Style.BRIGHT + 'Connecting to Kafka Broker without SSL')
-        producer = KafkaProducer(bootstrap_servers=kafkaBrokers,
-                                 value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+        try:
+            print('first try')
+            producer = KafkaProducer(bootstrap_servers=kafkaBrokers,
+                                     value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+        except:
+            print('retry')
+            producer = KafkaProducer(bootstrap_servers=kafkaBrokers,
+                                     value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+        finally:
+            print("failed to connect")
+            while True:
+                time.sleep(3)
     else:
         print(Style.BRIGHT + 'Connecting to Kafka Broker with SSL')
         producer = KafkaProducer(bootstrap_servers=kafkaBrokers, value_serializer=lambda v: json.dumps(v).encode('utf-8'),

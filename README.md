@@ -14,4 +14,5 @@
 ### Setup Env
 - set the KAFKA_BROKER variable `$ KAFKA_BROKER = IPOFKAFKA`
 
-
+### Concept Board
+https://miro.com/app/board/uXjVPj_iOJM=/?share_link_id=572616762295
