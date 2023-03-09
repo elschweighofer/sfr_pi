@@ -13,10 +13,8 @@ services:
       - rmoff_kafka
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
-  broker:
+  kafka0:
     image: confluentinc/cp-kafka:7.3.0
-    hostname: broker
-    container_name: broker
     networks: 
       - rmoff_kafka
     depends_on:
@@ -28,21 +26,21 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_LISTENERS: LISTENER_BOB://broker:29092,LISTENER_FRED://kafka0:9092,LISTENER_ALICE://kafka0:29094
-      KAFKA_ADVERTISED_LISTENERS: LISTENER_BOB://broker:29092,LISTENER_FRED://localhost:9092,LISTENER_ALICE://never-gonna-give-you-up:29094
+      KAFKA_LISTENERS: LISTENER_BOB://kafka0:29092,LISTENER_FRED://kafka0:9092,LISTENER_ALICE://kafka0:29094
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_BOB://kafka0:29092,LISTENER_FRED://localhost:9092,LISTENER_ALICE://never-gonna-give-you-up:29094
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_BOB:PLAINTEXT,LISTENER_FRED:PLAINTEXT,LISTENER_ALICE:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_BOB
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 100
   sensor:
 
-    image: se22m055/sfrpi:latest
+    image: sfrpi:latest
     hostname: sensor
     networks: 
       - rmoff_kafka
     container_name: sensor
     depends_on:
-      - broker
+      - kafka0
     environment:
       SSL: false
       TOPIC: sensor
-      KAFKA_BROKER: broker:29092
+      KAFKA_BROKER: kafka0:29092
