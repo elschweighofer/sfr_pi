@@ -34,10 +34,8 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_BOB
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 100
   sensor:
-    build: 
-      context: ../../
-      dockerfile: /Users/lukas/Projects/sfr_pi/pi/Dockerfile
-    image: sfrpi:latest
+
+    image: se22m055/sfrpi:latest
     hostname: sensor
     networks: 
       - rmoff_kafka
