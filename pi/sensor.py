@@ -1,5 +1,5 @@
-from kafka import KafkaProducer
-from colorama import init, Fore, Back, Style
+from kafka import KafkaProducer # type: ignore
+from colorama import init, Fore, Back, Style 
 import os
 import sys
 import json

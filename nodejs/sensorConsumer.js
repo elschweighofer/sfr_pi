@@ -11,11 +11,7 @@ module.exports = async function consume(io) {
   console.log("   --> Kafka Topic: " + topic);
   const kafka = new Kafka({
     clientId: config.clientId,
-    brokers: config.brokers,
-    ssl: {
-      rejectUnauthorized: true,
-      ca: [fs.readFileSync('certs/ca.crt', 'utf-8')],
-    }
+    brokers: config.brokers
   });
   // Creating Kafka Consumer
   const consumer = kafka.consumer({ groupId: 'home-sensor' });
