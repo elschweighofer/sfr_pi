@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Home Automation UI</title>
+    <title>Raspberry Pi Kafka</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
@@ -11,6 +11,18 @@
 </head>
 <body>
 <h1>Values Streamed from Pi</h1>
+<form method="get">
+    <label for="filter">Filter by Endpoint:</label>
+    <select name="host">
+      <option value="">All Hosts</option>
+      <option value="kafka-1">kafka-1 </option>
+      <option value="kafka-2">kafka-2</option>
+      <option value="srv-pi-01">srv-pi-01</option>
+      <option value="srv-pi-02">srv-pi-01</option>
+      <option value="Macbook-Air-von-Lukas">Macbook-Air-von-Lukas</option>
+    </select>
+    <button type="submit">Filter</button>
+  </form>
     <canvas id="temperature-gauge"></canvas>
     <canvas id="humidity-gauge"></canvas>
 </body>
