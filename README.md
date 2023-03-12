@@ -15,3 +15,5 @@
 - set the KAFKA_BROKER variable `$ KAFKA_BROKER = IPOFKAFKA`
 
 
+# Setup Afro
+https://quarkus.io/guides/kafka-schema-registry-avro
