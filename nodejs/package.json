@@ -1,5 +1,5 @@
 {
-  "name": "robipozzi-raspberry-sensors",
+  "name": "sfr_pi-raspberry-sensors",
   "private": false,
   "version": "1.0.0",
   "description": "Raspberry Sensors",
@@ -8,6 +8,7 @@
     "start": "node app"
   },
   "dependencies": {
+    "canvas-gauges": "^2.1.7",
     "ejs": "^2.7.4",
     "express": "4.17.1",
     "fs-extra": "10.0.0",
