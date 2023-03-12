@@ -80,3 +80,8 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:39092
     extra_hosts:
       - "moby:127.0.0.1"
+
+  afro:
+    image: quarkus/kafka-avro-schema-quickstart-jvm
+    ports:
+      - 8080:8080

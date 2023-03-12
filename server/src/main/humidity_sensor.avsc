@@ -1,0 +1,15 @@
+{
+  "namespace": "org.acme.kafka.quarkus",
+  "type": "record",
+  "name": "Humidity",
+  "fields": [
+    {
+      "name": "value",
+      "type": "numbe"
+    },
+    {
+      "name": "datetime",
+      "type": "string"
+    }
+  ]
+}
