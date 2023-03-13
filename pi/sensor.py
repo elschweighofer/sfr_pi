@@ -5,6 +5,8 @@ import sys
 import json
 import time
 import random
+import Adafruit_DHT
+import gpiozero
 
 # ***** Initializes Colorama to format printing
 init(autoreset=True)
