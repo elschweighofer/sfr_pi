@@ -1,1 +1,4 @@
 nodejs/node_modules
+nodejs/.DS_Store
+nodejs/public/.DS_Store
+venv
