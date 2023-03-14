@@ -13,7 +13,7 @@ app.use(express.json());
 require("./routers/health")(app, logger);
 require("./routers/index")(app, logger);
 // ***** Run server
-var PORT = 8082;
+var PORT = 48082;
 var server = app.listen(PORT, function() {
 	logger.info("Current working directory = " + process.cwd());
 	logger.info("Application is listening on port " + PORT);
