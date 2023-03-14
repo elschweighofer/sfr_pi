@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d9d990d-b4d3-495d-9265-ea040ae3c9c9" name="Changes" comment="split script and made them executable" />
+    <list default="true" id="5d9d990d-b4d3-495d-9265-ea040ae3c9c9" name="Changes" comment="split script and made them executable">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/producer/HumidityResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/producer/HumidityTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/environments/multiBroker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/environments/multiBroker/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/HumidityConsumerResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/consumer/HumidityConsumerResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/HumidityResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,6 +41,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/Pascal/IdeaProjects/sfr_pi",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "terminal",
     "vue.rearranger.settings.migration": "true"
@@ -43,6 +59,8 @@
       <option name="presentableId" value="Default" />
       <updated>1678475096380</updated>
       <workItem from="1678475097541" duration="2025000" />
+      <workItem from="1678810947957" duration="45000" />
+      <workItem from="1678813326128" duration="744000" />
     </task>
     <task id="LOCAL-00001" summary="split script and made them executable">
       <created>1678476414035</created>

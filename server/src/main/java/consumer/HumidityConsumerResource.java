@@ -1,4 +1,4 @@
-package org.acme.kafka;
+package consumer;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;
