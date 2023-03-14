@@ -1,0 +1,12 @@
+{
+ "namespace": "io.confluent.examples.clients.basicavro",
+ "type": "record",
+ "name": "Temperature",
+ "fields": [
+     {"name": "id", "type": "string"},
+     {"name": "temperature", "type": "double",
+       "default": "0.0"
+     }
+
+ ]
+}
