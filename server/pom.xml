@@ -90,6 +90,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <artifactId>logback-core</artifactId>
             <version>1.2.6</version>
         </dependency>
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-streams-avro-serde</artifactId>
+            <version>7.3.2</version>
+        </dependency>
 
     </dependencies>
 
