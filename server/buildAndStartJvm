@@ -1,0 +1,4 @@
+#!/bin/bash
+
+quarkus build
+java -Dmp.messaging.connector.smallrye-kafka.apicurio.registry.url=http://localhost:8081/apis/registry/v2 -jar target/quarkus-app/quarkus-run.jar
