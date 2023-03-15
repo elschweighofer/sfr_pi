@@ -52,6 +52,7 @@ public class TemperatureAggregator {
 
 
         streams.start();
+        // should stream filtered stream back to topic
         onlyHighTemperatures.to("temperatures-high");
     }
 
