@@ -33,6 +33,8 @@ public class TemperatureAggregator {
         streamsConfiguration.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, GenericAvroSerde.class);
         streamsConfiguration.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, GenericAvroSerde.class);
         streamsConfiguration.put("schema.registry.url", "http://localhost:8081");
+        streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, "my-first-streams-application");
+        streamsConfiguration.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 
         final Map<String, String> serdeConfig = Collections.singletonMap("schema.registry.url",
                 "http://localhost:8081");
@@ -50,8 +52,7 @@ public class TemperatureAggregator {
 
 
         streams.start();
-
-        streams.close();
+        onlyHighTemperatures.to("temperatures-high");
     }
 
 }
