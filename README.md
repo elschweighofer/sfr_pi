@@ -1,36 +1,33 @@
 # sfr_pi
-
-## Setup Kafka
-Docker Compose in the Sever Folder for included Schema Registry, otherwise use Startup Script
-## Server
+## Build project
 Java Maven Project with Consumer, Producer and Avro Schemas based on https://docs.confluent.io/platform/current/schema-registry/schema_registry_onprem_tutorial.html#schema-definition
 Build with 
 $ cd server
 $ mvn clean compile package
 
-Run with 
+
+### optionally create a custom config file
+By default, the project will use the config file in <project_dir>/server/config/java.config
+enable the commented out line in the script or directly run with 
 $ mvn exec:java -Dexec.mainClass=io.confluent.examples.clients.basicavro.ProducerExample \
-  -Dexec.args="$HOME/.confluent/java.config"
+  -Dexec.args="$<pathToConfig>.confluent/java.config"
 (java.config is optional when Kafka Broker listens on localhost:9092)
 
-Config File:
 
-'# Required connection configs for Kafka producer, consumer, and admin
-bootstrap.servers=localhost:9092
-security.protocol=PLAINTEXT
-sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='{{ CLUSTER_API_KEY }}' password='{{ CLUSTER_API_SECRET }}';
-sasl.mechanism=PLAIN
-# Required for correctness in Apache Kafka clients prior to 2.6
-client.dns.lookup=use_all_dns_ips
+## Start containers
+### Setup Docker on Raspberry
+- You need a running docker and docker-compose installed: https://dev.to/elalem>
+- $ cd server
+- $ ./startup.sh or $ docker-compose up
 
-# Best practice for higher availability in Apache Kafka clients prior to 3.0
-session.timeout.ms=45000
+### Access the control center
+- To access a UI that gives you information about topics and the kafka cluster
+ navigate to http://localhost:9021
 
-# Best practice for Kafka producer to prevent data loss
-acks=all
-
-# Required connection configs for Confluent Cloud Schema Registry
-schema.registry.url=http://0.0.0.0:8081'
+## start producing, transforming and consuming
+- Navigate to the server folder $ cd server
+- For the producer, transformer and the consumer you will find a script for eac>
+- Start the scripts and keep them running, check out the kafka control center h>
 
 
 ## Python 

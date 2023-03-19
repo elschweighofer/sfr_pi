@@ -22,7 +22,7 @@ public class ProducerTemperature {
     private static String configFile;
 
     @SuppressWarnings("InfiniteLoopStatement")
-    public static void main(final String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException, SerializationException, InterruptedException {
 
         if (args.length < 1) {
           // Backwards compatibility, assume localhost
@@ -56,7 +56,7 @@ public class ProducerTemperature {
                 final Temperature temperature = new Temperature(id, 1000.00d);
                 final ProducerRecord<String, Temperature> record = new ProducerRecord<String, Temperature>(TOPIC, temperature.getId().toString(), temperature);
                 producer.send(record);
-                Thread.sleep(1000L);
+                Thread.sleep(10000L);
             }
 
             producer.flush();
@@ -64,8 +64,10 @@ public class ProducerTemperature {
 
         } catch (final SerializationException e) {
             e.printStackTrace();
+            throw e;
         } catch (final InterruptedException e) {
             e.printStackTrace();
+            throw e;
         }
 
     }
