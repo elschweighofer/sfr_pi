@@ -7,6 +7,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.apache.kafka.common.serialization.LongSerializer;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -46,15 +47,15 @@ public class ProducerTemperature {
 
         props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.RETRIES_CONFIG, 0);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
 
-        try (KafkaProducer<String, Temperature> producer = new KafkaProducer<String, Temperature>(props)) {
+        try (KafkaProducer<Long, Temperature> producer = new KafkaProducer<Long, Temperature>(props)) {
 
             for (long i = 0; i < 10000; i++) {
-                final String id = "Reading_" + Long.toString(i);
+                final Long id = i;//"Reading_" + Long.toString(i);
                 final Temperature temperature = new Temperature(id, 1000.00d);
-                final ProducerRecord<String, Temperature> record = new ProducerRecord<String, Temperature>(TOPIC, temperature.getId().toString(), temperature);
+                final ProducerRecord<Long, Temperature> record = new ProducerRecord<Long, Temperature>(TOPIC, temperature.getId(), temperature);
                 producer.send(record);
                 Thread.sleep(1000L);
             }
