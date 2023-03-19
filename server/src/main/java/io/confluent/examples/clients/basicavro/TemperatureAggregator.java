@@ -27,17 +27,18 @@ public class TemperatureAggregator {
     private static final String OUTPUT_TOPIC = "temperature-average";
 
     public static void main(final String[] args) {
-
+/*
         // When configuring the default serdes of StreamConfig
         final Properties streamsConfiguration = new Properties();
         streamsConfiguration.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, GenericAvroSerde.class);
         streamsConfiguration.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, GenericAvroSerde.class);
         streamsConfiguration.put("schema.registry.url", "http://localhost:8081");
-        streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, "my-first-streams-application");
+        //streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, "my-first-streams-application");
         streamsConfiguration.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 
         final Map<String, String> serdeConfig = Collections.singletonMap("schema.registry.url",
                 "http://localhost:8081");
+
         final Serde<GenericRecord> keyGenericAvroSerde = new GenericAvroSerde();
         keyGenericAvroSerde.configure(serdeConfig, true); // `true` for record keys
         final Serde<GenericRecord> valueGenericAvroSerde = new GenericAvroSerde();
@@ -45,15 +46,19 @@ public class TemperatureAggregator {
 
 
         final StreamsBuilder builder = new StreamsBuilder();
-        final KStream<String , Integer> textLines = builder.stream("temperature");
-        final Topology topology = builder.build();
-        final KafkaStreams streams = new KafkaStreams(topology, streamsConfiguration);
-        final KStream<String, Integer> onlyHighTemperatures = textLines.filter((key, value) -> value > 25 );
+        final KStream<String , Double> temperatures = builder.stream("temperature");
+        // final Topology topology = builder.build();
+        // final KafkaStreams streams = new KafkaStreams(topology, streamsConfiguration);
+        final KStream<String, Double> onlyHighTemperatures = temperatures.filter((key, value) -> value > 25 );
 
+        System.out.print("Filtered output");
+        onlyHighTemperatures.to("filtered-output".);
 
-        streams.start();
+        //temperatures.to("temperature-average");
         // should stream filtered stream back to topic
-        onlyHighTemperatures.to("temperatures-high");
+        //onlyHighTemperatures.to("temperatures-high");
+
+        */
     }
 
 }
