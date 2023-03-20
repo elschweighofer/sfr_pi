@@ -7,6 +7,7 @@ import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
@@ -34,12 +35,9 @@ public class RunningAverage {
 
         config.put(APPLICATION_ID_CONFIG, "kafka-temperature");
         config.put(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        config.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Long().getClass().getName());
-        config.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         config.put(SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
-        config.put(REPLICATION_FACTOR_CONFIG, 1);
-        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
-        config.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+        config.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Long().getClass().getName());
+        config.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.Double().getClass().getName());
 
         return config;
     }
@@ -125,11 +123,10 @@ public class RunningAverage {
                         Materialized.with(Long(), countAndSumSerde));
 
         final KTable<Long, Double> temperatureAverage =
-                temperatureCountAndSum.mapValues(value -> value.getSum() / value.getCount(),
-                        Materialized.as("average-temperature"));// to-do: warum anders benannt als output topic?
+                temperatureCountAndSum.mapValues(value -> value.getSum() / value.getCount(), Materialized.as("average-temperature"));// to-do: warum anders benannt als output topic?
 
         // persist the result in topic
-        temperatureAverage.toStream().to(avgTemperatureTopicName);
+        temperatureAverage.toStream().to(avgTemperatureTopicName, Produced.with(Serdes.Long(), Serdes.Double()));
         return temperatureAverage;
     }
 
