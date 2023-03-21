@@ -1,14 +1,16 @@
 # sfr_pi
+This project will read temparature and humidity values from a sensor and push them to a kafka cluster. Java console apps then either conusme or transoform the values.
 
-## Startup Kafka Cluster
+
+## Setup Step 1: Startup Kafka Cluster
 Run 
 - $ cd server
 - $ docker-compose up 
 To start all docker containers and the kafka cluster including a schema registry with avro. Wait for around 2 minutes to give the contianers a chance to boot up.
 Check the health status with $ docker ps
 
-## Server
-Java Maven Project features a transformer, 2 consumer,a producer and Avro Schemas based on https://docs.confluent.io/platform/current/schema-registry/schema_registry_onprem_tutorial.html#schema-definition
+## Setup Step 2: Producer, Transformer & Consumer
+Java Maven Project features a transformer, 2 consumer and a producer each with Avro Schemas based on https://docs.confluent.io/platform/current/schema-registry/schema_registry_onprem_tutorial.html#schema-definition
 
 The transformer is a running average of temparatures, its comitting the values into an own Avro schema.
 
