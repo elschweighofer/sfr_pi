@@ -2,8 +2,8 @@
 
 ## Startup Kafka Cluster
 Run 
-$ cd server
-$ docker-compose up 
+- $ cd server
+- $ docker-compose up 
 To start all docker containers and the kafka cluster including a schema registry with avro. Wait for around 2 minutes to give the contianers a chance to boot up.
 Check the health status with $ docker ps
 
@@ -13,8 +13,8 @@ Java Maven Project features a transformer, 2 consumer,a producer and Avro Schema
 The transformer is a running average of temparatures, its comitting the values into an own Avro schema.
 
 ### Build with 
-$ cd server
-$ mvn clean compile package
+- $ cd server # if not already there
+- $ ./build.sh # or $ mvn clean compile package
 
 ### Run with 
 Use the multiple startup scripts to run the producer and all consumers and transformers.
