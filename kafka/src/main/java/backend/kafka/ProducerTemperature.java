@@ -1,5 +1,6 @@
 package backend.kafka;
 
+import io.confluent.examples.clients.basicavro.Temperature;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.clients.producer.KafkaProducer;

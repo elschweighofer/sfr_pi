@@ -3,6 +3,8 @@ package backend.kafka;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import io.confluent.examples.clients.basicavro.CountAndSum;
+import io.confluent.examples.clients.basicavro.Temperature;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.*;

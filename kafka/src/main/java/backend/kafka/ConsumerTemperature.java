@@ -1,5 +1,7 @@
 package backend.kafka;
 
+import backend.helper.HttpHelper;
+import io.confluent.examples.clients.basicavro.Temperature;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
@@ -63,6 +65,7 @@ public class ConsumerTemperature {
                     final Long key = record.key();
                     final Temperature value = record.value();
                     System.out.printf("key = %s, value = %s%n", key, value);
+                    HttpHelper.sendPost(value.getId(), value.getTemperature());
                 }
             }
 
