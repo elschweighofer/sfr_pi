@@ -1,0 +1,10 @@
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/Application.java
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/controllers/ProfileController.java
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/models/Profile.java
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/models/ProfileRequest.java
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/configs/CouchbaseConfig.java
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/runners/DBSetupRunner.java
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/configs/DBProperties.java
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/configs/CollectionNames.java
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/configs/Swagger.java
+/Users/lukas/sfr/java-springboot-quickstart/src/main/java/org/couchbase/quickstart/controllers/HealthCheckController.java
