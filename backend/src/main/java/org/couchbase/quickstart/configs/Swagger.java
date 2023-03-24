@@ -1,6 +1,6 @@
 package org.couchbase.quickstart.configs;
 
-import org.couchbase.quickstart.controllers.ProfileController;
+import org.couchbase.quickstart.controllers.TemperatureController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,7 +15,7 @@ public class Swagger {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage(ProfileController.class.getPackage().getName()))
+                .apis(RequestHandlerSelectors.basePackage(TemperatureController.class.getPackage().getName()))
                 .paths(PathSelectors.any())
                 .build();
     }

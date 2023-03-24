@@ -43,7 +43,7 @@ public class DBSetupRunner implements CommandLineRunner {
             System.out.println("Created collection '" + spec.name() + "' in scope '" + spec.scopeName() + "' of bucket '" + bucket.name() + "'");
             Thread.sleep(1000);
         } catch (CollectionExistsException e){
-            System.out.println(String.format("Collection <%s> already exists", CollectionNames.PROFILE));
+            System.out.println(String.format("Collection <%s> already exists", CollectionNames.TEMPERATURE));
         } catch (Exception e) {
             System.out.println(String.format("Generic error <%s>",e.getMessage()));
         }
