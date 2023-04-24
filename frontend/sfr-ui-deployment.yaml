@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - image: learnk8s/knote-js:1.0.0
-        name: sfrui s
+        name: sfrui
         ports:
         - containerPort: 80
