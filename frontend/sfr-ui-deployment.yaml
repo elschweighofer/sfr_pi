@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sfr-ui
+  name: sfrui
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: sfr-ui
+      app: sfrui
   template:
     metadata:
       labels:
-        app: sfr-ui
+        app: sfrui
     spec:
       containers:
       - image: https://hub.docker.com/_/node:latest
-        name: guestbook-ui
+        name: sfrui s
         ports:
         - containerPort: 80

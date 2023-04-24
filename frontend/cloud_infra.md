@@ -1,1 +1,1 @@
-argocd app create sfr_ui --repo https://github.com/elschweighofer/sfr_pi --path frontend --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create sfrui --repo https://github.com/elschweighofer/sfr_pi --path frontend --dest-server https://kubernetes.default.svc --dest-namespace default

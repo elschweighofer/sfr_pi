@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sfr-ui
+  name: sfrui
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: sfr-ui
+    app: sfrui
