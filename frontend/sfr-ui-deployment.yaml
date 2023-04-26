@@ -14,7 +14,7 @@ spec:
         app: sfrui
     spec:
       containers:
-      - image: learnk8s/knote-js:1.0.0
+      - image: se22m055/sfr_frontend:0.1
         name: sfrui
         ports:
         - containerPort: 80
