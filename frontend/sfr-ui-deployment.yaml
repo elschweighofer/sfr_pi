@@ -18,3 +18,5 @@ spec:
         name: sfrui
         ports:
         - containerPort: 3000 
+    syncPolicy:
+      automated: {}
