@@ -17,8 +17,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: change dir
-      run: cd nodejs/
     - name: Build the Docker image
       run: docker build . --file nodejs/Dockerfile --tag sfr_frontend
     - name: login
