@@ -14,7 +14,7 @@ spec:
         app: sfrui
     spec:
       containers:
-      - image: se22m055/sfr_frontend:0.1
+      - image: se22m055/sfr_frontend:latest
         name: sfrui
         ports:
         - containerPort: 3000 
