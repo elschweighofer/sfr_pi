@@ -11,12 +11,15 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      DOCKERUSER: ${{ secrets.DOCKER_USER}}
+      DOCKERPASSWORD: ${{ secrets. DOCKER_PASSWORD}}
 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag sfr_frontend:$(date +%s):$(date +%s)
     - name: login
-      run: docker login -u $DockerUser -p $DockerPassword
+      run: docker login -u $DOCKERUSER -p $DOCKERPASSWORD
     - name: Push the Image
       run: docker push se22m055/sfr_frontend:latest
