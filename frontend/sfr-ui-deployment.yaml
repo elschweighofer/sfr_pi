@@ -17,4 +17,4 @@ spec:
       - image: se22m055/sfr_frontend:0.1
         name: sfrui
         ports:
-        - containerPort: 80
+        - containerPort: 3000 
