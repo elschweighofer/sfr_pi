@@ -11,18 +11,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file nodejs/Dockerfile --tag sfr_frontend
-  push:
-    runs-on: ubuntu-latest
     env:
       DOCKERUSER: ${{ secrets.DOCKER_USER}}
       DOCKERPASSWORD: ${{ secrets. DOCKER_PASSWORD}}
+
     steps:
+    - uses: actions/checkout@v3
+    - name: change dir
+      run: cd nodejs/
+    - name: Build the Docker image
+      run: docker build . --file nodejs/Dockerfile --tag sfr_frontend
     - name: login
       run: docker login -u $DOCKERUSER -p $DOCKERPASSWORD
     - name: Push the Image
