@@ -52,8 +52,9 @@ Install argo cli on dev mac:
 ```zsh
 brew install argocd
 ```
+
 Create App
+
 ```zsh
 argocd app create sfrui --repo <https://github.com/elschweighofer/sfr_pi> --path frontend-deplyoment --dest-server <https://kubernetes.default.svc> --dest-namespace default
 ```
-
