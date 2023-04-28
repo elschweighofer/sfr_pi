@@ -23,7 +23,8 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./nodejs/Dockerfile
+          workdir: ./nodejs
+          file: Dockerfile
           platforms: linux/arm64
           push: true
           tags: ${{ secrets.DOCKER_USER }}/sfr_frontend:latest
