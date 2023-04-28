@@ -1,7 +1,7 @@
 FROM node:18
 ENV NODE_ENV=production
 WORKDIR /usr/src/app
-COPY package*.json  ./
+COPY package.json  ./
 RUN ls -la
 RUN npm install
 COPY . .
