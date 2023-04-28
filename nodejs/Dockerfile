@@ -1,9 +1,9 @@
 FROM node:18
 ENV NODE_ENV=production
 WORKDIR /usr/src/app
-COPY package.json  ./
+COPY nodejs/package.json  ./
 RUN ls -la
 RUN npm install
-COPY . .
+COPY nodejs/. .
 EXPOSE 3000
 CMD ["node", "app.js"]
