@@ -22,8 +22,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: .
-          workdir: ./nodejs
+          context: ./nodejs
           file: Dockerfile
           platforms: linux/arm64
           push: true
